@@ -1,0 +1,366 @@
+ * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+        font-family: 'IBM Plex Sans', sans-serif;
+        background: #f0f4f8;
+        color: #1a2332;
+        min-height: 100vh;
+    }
+
+    .app-wrapper {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Header */
+    .app-header {
+        background: #fff;
+        border-bottom: 1px solid #dce3ec;
+        padding: 0 2rem;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .app-header .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 600;
+        font-size: 1rem;
+        color: #1a2332;
+        letter-spacing: -0.01em;
+    }
+
+    .app-header .logo-icon {
+        width: 32px;
+        height: 32px;
+        background: #1a5276;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 16px;
+    }
+
+    .app-header .badge {
+        font-size: 0.7rem;
+        background: #e8f4fd;
+        color: #1a5276;
+        padding: 3px 8px;
+        border-radius: 20px;
+        font-weight: 500;
+        border: 1px solid #bee3f8;
+    }
+
+    /* Main layout */
+    .main-content {
+        flex: 1;
+        padding: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .page-title {
+        margin-bottom: 1.5rem;
+    }
+
+    .page-title h1 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #1a2332;
+        letter-spacing: -0.02em;
+    }
+
+    .page-title p {
+        color: #64748b;
+        font-size: 0.875rem;
+        margin-top: 4px;
+    }
+
+    /* Two column layout */
+    .two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        align-items: start;
+    }
+
+    /* Cards */
+    .card {
+        background: #fff;
+        border: 1px solid #dce3ec;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .card-header {
+        padding: 1.25rem 1.5rem;
+        border-bottom: 1px solid #dce3ec;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .card-header h2 {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #1a2332;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+    }
+
+    .card-header .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #1a5276;
+    }
+
+    .card-body {
+        padding: 1.5rem;
+    }
+
+    /* Form elements */
+    .form-group {
+        margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+        display: block;
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: #475569;
+        margin-bottom: 6px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+    }
+
+    .form-group .required {
+        color: #e53e3e;
+        margin-left: 2px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 10px 14px;
+        border: 1px solid #dce3ec;
+        border-radius: 8px;
+        font-family: 'IBM Plex Sans', sans-serif;
+        font-size: 0.875rem;
+        color: #1a2332;
+        background: #fafbfc;
+        transition: all 0.15s;
+        outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+        border-color: #1a5276;
+        background: #fff;
+        box-shadow: 0 0 0 3px rgba(26, 82, 118, 0.08);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+        color: #a0aec0;
+    }
+
+    .form-group textarea {
+        resize: vertical;
+        min-height: 80px;
+    }
+
+    .form-hint {
+        font-size: 0.75rem;
+        color: #94a3b8;
+        margin-top: 4px;
+    }
+
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+
+    /* Submit button */
+    .btn-analyze {
+        width: 100%;
+        padding: 12px;
+        background: #1a5276;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-family: 'IBM Plex Sans', sans-serif;
+        font-size: 0.875rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.15s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        letter-spacing: 0.01em;
+        margin-top: 0.5rem;
+    }
+
+    .btn-analyze:hover {
+        background: #154360;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(26, 82, 118, 0.25);
+    }
+
+    .btn-analyze:disabled {
+        background: #94a3b8;
+        transform: none;
+        box-shadow: none;
+        cursor: not-allowed;
+    }
+
+    /* Result panel */
+    .result-empty {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 3rem 1.5rem;
+        color: #94a3b8;
+        text-align: center;
+        gap: 12px;
+    }
+
+    .result-empty .empty-icon {
+        font-size: 2.5rem;
+        opacity: 0.4;
+    }
+
+    .result-empty p {
+        font-size: 0.875rem;
+    }
+
+    /* Risk badge */
+    .risk-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin-bottom: 1.25rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .risk-low { background: #f0fff4; color: #276749; border: 1px solid #9ae6b4; }
+    .risk-medium { background: #fffbeb; color: #92400e; border: 1px solid #fcd34d; }
+    .risk-high { background: #fff5f5; color: #9b2c2c; border: 1px solid #feb2b2; }
+    .risk-default { background: #ebf8ff; color: #1a5276; border: 1px solid #bee3f8; }
+
+    /* Result content */
+    .result-content {
+        font-size: 0.875rem;
+        line-height: 1.7;
+        color: #2d3748;
+    }
+
+    .result-content h1,
+    .result-content h2,
+    .result-content h3 {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #1a2332;
+        margin: 1rem 0 0.5rem;
+    }
+
+    .result-content ul, 
+    .result-content ol {
+        padding-left: 1.25rem;
+        margin: 0.5rem 0;
+    }
+
+    .result-content li {
+        margin-bottom: 0.25rem;
+    }
+
+    .result-content strong {
+        color: #1a2332;
+        font-weight: 600;
+    }
+
+    .result-content p {
+        margin-bottom: 0.75rem;
+    }
+
+    /* Divider */
+    .result-divider {
+        height: 1px;
+        background: #dce3ec;
+        margin: 1rem 0;
+    }
+
+    /* Error */
+    .error-box {
+        background: #fff5f5;
+        border: 1px solid #feb2b2;
+        border-radius: 8px;
+        padding: 1rem 1.25rem;
+        color: #9b2c2c;
+        font-size: 0.875rem;
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        margin-bottom: 1rem;
+    }
+
+    /* Loading */
+    .loading-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 3rem 1.5rem;
+        gap: 16px;
+        color: #64748b;
+    }
+
+    .spinner {
+        width: 36px;
+        height: 36px;
+        border: 3px solid #dce3ec;
+        border-top-color: #1a5276;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+
+    .loading-box p {
+        font-size: 0.875rem;
+    }
+
+    /* Timestamp */
+    .result-meta {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.75rem;
+        color: #94a3b8;
+        font-family: 'IBM Plex Mono', monospace;
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #dce3ec;
+    }
+
+    @media (max-width: 768px) {
+        .two-col { grid-template-columns: 1fr; }
+        .form-row { grid-template-columns: 1fr; }
+        .main-content { padding: 1rem; }
+    }
