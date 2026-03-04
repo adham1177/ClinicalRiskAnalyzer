@@ -1,6 +1,7 @@
 using ClinicalRiskAnalyzer.Services;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Markdig;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ClinicalRiskAnalyzer.Pages;
 
@@ -17,12 +18,21 @@ public class IndexModel : PageModel
         _aiService = aiService;
     }
 
-    public async Task OnPostAsync(string PatientName, int Age, string Diagnosis, string Medications, string LabResults, string TrialProtocol)
+    public void OnGet()
+    {
+        if (TempData["RiskAssessment"] is string result)
+            RiskAssessment = result;
+
+        if (TempData["ErrorMessage"] is string error)
+            ErrorMessage = error;  
+    }
+
+    public async Task<IActionResult> OnPostAsync(string PatientName, int Age, string Diagnosis, string Medications, string LabResults, string TrialProtocol)
     {
         if (Age < 1 || Age > 120)
         {
-            ErrorMessage = "Please enter a valid age between 1 and 120.";
-            return;
+            TempData["ErrorMessage"] = "Please enter a valid age between 1 and 120.";
+            return RedirectToPage();
         }
 
         try
@@ -50,20 +60,26 @@ public class IndexModel : PageModel
 
             RiskAssessment = await _aiService.AnalyzeAsync(prompt);
 
+            if (string.IsNullOrWhiteSpace(RiskAssessment))
+                TempData["ErrorMessage"] = "The AI returned an empty response. Please try again.";
+            else
+                TempData["RiskAssessment"] = RiskAssessment;
+
         }
         catch (HttpRequestException)
         {
-            ErrorMessage = "Could not connect to the AI service. Please check your connection and try again.";
+            TempData["ErrorMessage"] = "Could not connect to the AI service. Please check your connection and try again.";
         }
         catch (TaskCanceledException)
         {
-            ErrorMessage = "The request timed out. The AI service may be busy — please try again.";
+            TempData["ErrorMessage"] = "The request timed out. The AI service may be busy — please try again.";
         }
         catch (Exception ex)
         {
-            ErrorMessage = $"An unexpected error occurred: {ex.Message}";
+            TempData["ErrorMessage"] = $"An unexpected error occurred: {ex.Message}";
         }
        
+        return RedirectToPage();
     }
 
 
