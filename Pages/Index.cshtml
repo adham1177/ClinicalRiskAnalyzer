@@ -1,0 +1,60 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Clinical Risk Analyzer";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-dark text-white">
+                    <h3 class="mb-0">Clinical Trial Risk Analyzer</h3>
+                    <small>AI-powered patient risk assessment</small>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        <div class="mb-3">
+                            <label class="form-label">Patient Name</label>
+                            <input type="text" class="form-control" name="PatientName" placeholder="e.g. Ahmed Hassan" required />
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Age</label>
+                                <input type="number" class="form-control" name="Age" placeholder="e.g. 45" required />
+                            </div>"
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Diagnosis</label>
+                                <input type="text" class="form-control" name="Diagnosis" placeholder="e.g. Hypertension" required />
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Current Medications</label>
+                            <input type="text" class="form-control" name="Medications" placeholder="e.g. Metformin 500mg, Aspirin 100mg"/>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Recent Lab Results</label>
+                            <textarea class="form-control" name="LabResults" rows="3" placeholder="e.g. HbA1c: 9.2%, Blood Pressure: 150/95, Cholesterol: 240mg/dL"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Trial Protocol</label>
+                            <input type="text" class="form-control" name="TrialProtocol" placeholder="e.g. Metformin Efficacy Study - Phase 3"/>
+                        </div>
+                        <button type="submit" class="btn btn-dark w-100 py-2">Analyze Risk</button>
+                    </form>
+                     @if (!string.IsNullOrEmpty(Model.RiskAssessment))
+                    {
+                        <div class="mt-4">
+                            <h5 class="fw-bold">AI Risk Assessment:</h5>
+                            <div class="alert alert-secondary">
+                                @Html.Raw(Model.RiskAssessmentHtml)
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
